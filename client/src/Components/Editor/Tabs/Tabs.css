@@ -1,0 +1,42 @@
+.tabs {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-list {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tab {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.tab.active {
+    background-color: #fff;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.new-file {
+    display: flex;
+    gap: 10px;
+}
+
+.new-file input {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.new-file button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
