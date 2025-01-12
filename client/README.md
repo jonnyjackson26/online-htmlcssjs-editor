@@ -11,3 +11,6 @@ connect boilerplate
 
 keyboard shortcuts
 
+make the tab bar scrollable
+
+line numbers in textarea
