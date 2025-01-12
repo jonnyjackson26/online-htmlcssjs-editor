@@ -36,6 +36,12 @@ const Editor = () => {
         setFiles(updatedFiles);
       };
 
+      const handleAddFile = (newFilename) => {
+        if (!files.some(file => file.filename === newFilename)) {
+          setFiles([...files, { filename: newFilename, text: '' }]);
+        }
+      };
+
 
 
   
@@ -45,6 +51,7 @@ const Editor = () => {
             size={sizes.editor} 
             onCodeChange={handleFileChange} 
             files={files}
+            onAddFile={handleAddFile}
         />
         <div
             className="resize-handle"

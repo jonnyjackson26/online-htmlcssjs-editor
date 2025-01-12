@@ -3,7 +3,7 @@ import './EditorPanel.css';
 import TabRow from './TabRow/TabRow';
 import TextArea from './TextArea/TextArea';
 
-const EditorPanel = ({ size, onCodeChange, files }) => {
+const EditorPanel = ({ size, onCodeChange, files, onAddFile  }) => {
   const [activeTab, setActiveTab] = React.useState('index.html');
 
   const handleTextChange = (filename, value) => {
@@ -17,7 +17,7 @@ const EditorPanel = ({ size, onCodeChange, files }) => {
       <TabRow
         tabs={files.map(file => file.filename)}
         activeTab={activeTab}
-        onAddTab={(tab) => {/* Implement add tab functionality */}}
+        onAddTab={onAddFile}
         onSwitchTab={setActiveTab}
       />
       <TextArea

@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TabRow.css';
 
 const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
+  const [isAddingTab, setIsAddingTab] = useState(false);
+  const [newTabName, setNewTabName] = useState('');
+
+  const handleAddTab = () => {
+    if (newTabName.trim()) {
+      onAddTab(newTabName.trim());
+      setNewTabName('');
+      setIsAddingTab(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleAddTab();
+    } else if (e.key === 'Escape') {
+      setIsAddingTab(false);
+      setNewTabName('');
+    }
+  };
+
   return (
     <div className="tab-row">
       {tabs.map((tab) => (
@@ -13,9 +33,21 @@ const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
           {tab}
         </button>
       ))}
-      <button className="add-tab" onClick={() => onAddTab(`file${tabs.length + 1}`)}>
-        +
-      </button>
+      {isAddingTab ? (
+        <input
+          type="text"
+          value={newTabName}
+          onChange={(e) => setNewTabName(e.target.value)}
+          onBlur={handleAddTab}
+          onKeyDown={handleKeyPress}
+          placeholder="New file name"
+          autoFocus
+        />
+      ) : (
+        <button className="add-tab" onClick={() => setIsAddingTab(true)}>
+          +
+        </button>
+      )}
     </div>
   );
 };
