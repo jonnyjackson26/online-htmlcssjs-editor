@@ -2,9 +2,22 @@ import React, { useState, useRef } from 'react';
 import Tabs from './Tabs/Tabs';
 import Viewer from './Viewer/Viewer';
 import './Editor.css';
+import boilerplate from '../../assets/boilerplate';
 
-const Editor = () => {
-    const [files, setFiles] = useState([{ name: 'index.html', content: '', type: 'html' }]);
+const Editor = ({ addBoilerPlate }) => {
+
+    console.log('addBoilerPlate:', addBoilerPlate);
+    
+
+    const initialFiles = addBoilerPlate
+        ? [
+              { name: 'index.html', content: boilerplate.html, type: 'html' },
+              { name: 'style.css', content: boilerplate.css, type: 'css' },
+              { name: 'script.js', content: boilerplate.js, type: 'js' },
+          ]
+        : [{ name: 'index.html', content: '', type: 'html' }];
+
+    const [files, setFiles] = useState(initialFiles);
     const [activeFileIndex, setActiveFileIndex] = useState(0);
     const viewerTabRef = useRef(null);
 
