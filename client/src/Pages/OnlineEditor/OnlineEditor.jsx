@@ -7,7 +7,7 @@ const OnlineEditor = () => {
 
   return (
     <div>
-      <Editor addBoilerPlate={true}/>
+      <Editor useBoilerPlate={true}/>
       {/*<Link to="/">go to home</Link>*/}
     </div>
   );

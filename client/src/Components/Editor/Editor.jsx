@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Editor.css';
 import EditorPanel from './EditorPanel/EditorPanel';
 import ViewerPanel from './ViewerPanel/ViewerPanel';
+import boilerplate from '../../assets/boilerplate'
 
-const Editor = () => {
+const Editor = ({useBoilerPlate}) => {
     const [sizes, setSizes] = useState({ editor: 50, viewer: 50 });
 
     const handleDrag = (e) => {
@@ -23,11 +24,19 @@ const Editor = () => {
 
 
 
-    const [files, setFiles] = useState([
-        { filename: "index.html", text: "<h1>Hello, World!</h1>" },
-        { filename: "style.css", text: "h1 { color: blue; }" },
-        { filename: "script.js", text: "console.log('Hello, World!');" }
-      ]);
+    const initialFiles = useBoilerPlate
+      ? [
+          { filename: "index.html", text: boilerplate.html },
+          { filename: "style.css", text: boilerplate.css },
+          { filename: "script.js", text: boilerplate.js }
+        ]
+      : [
+          { filename: "index.html", text: "" },
+          { filename: "style.css", text: "" },
+          { filename: "script.js", text: "" }
+        ];
+
+    const [files, setFiles] = useState(initialFiles);
   
       const handleFileChange = (filename, value) => {
         const updatedFiles = files.map(file =>
