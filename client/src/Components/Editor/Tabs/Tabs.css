@@ -3,13 +3,14 @@
     flex-direction: column;
     background-color: #f4f4f4;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
 }
 
 .tab-list {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .tab {
@@ -28,15 +29,36 @@
 
 .new-file {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 5px;
 }
 
 .new-file input {
     padding: 5px;
     font-size: 14px;
+    border: 1px solid #ccc;
 }
 
 .new-file button {
     padding: 5px 10px;
     cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+}
+
+.add-file-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+}
+
+.open-viewer-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #d4edda;
+    border-radius: 3px;
 }
