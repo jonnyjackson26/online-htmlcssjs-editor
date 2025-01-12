@@ -9,5 +9,5 @@ open viewer in new window
 
 connect boilerplate
 
-
+keyboard shortcuts
 

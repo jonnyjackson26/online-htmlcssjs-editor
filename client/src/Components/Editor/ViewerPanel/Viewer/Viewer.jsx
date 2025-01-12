@@ -4,19 +4,34 @@ import './Viewer.css';
 const Viewer = ({ files, setDocumentTitle }) => {
   const generateContent = useMemo(() => {
     const htmlFile = files.find(file => file.filename === 'index.html');
-    const cssFile = files.find(file => file.filename === 'style.css');
-    const jsFile = files.find(file => file.filename === 'script.js');
+    if (!htmlFile) return '';
+
+
+    /*
+    <link rel="stylesheet"     href="style.css"> works but <link rel="stylesheet"     href="style.css "> doesnt (notice the space after .css in the second example)
+    idk if this is how it should be or not
+
+    */
+
+
+    const processedHtml = htmlFile.text.replace(
+      /<link\s+rel="stylesheet"\s+href="(.+?)"\s*\/?>/g,
+      (match, href) => {
+        const cssFile = files.find(file => file.filename === href);
+        return cssFile ? `<style>${cssFile.text}</style>` : match;
+      }
+    ).replace(
+      /<script\s+src="(.+?)"><\/script>/g,
+      (match, src) => {
+        const jsFile = files.find(file => file.filename === src);
+        return jsFile ? `<script>${jsFile.text}</script>` : match;
+      }
+    );
 
     return `
       <!DOCTYPE html>
       <html>
-        <head>
-          <style>${cssFile ? cssFile.text : ''}</style>
-        </head>
-        <body>
-          ${htmlFile ? htmlFile.text : ''}
-          <script>${jsFile ? jsFile.text : ''}</script>
-        </body>
+        ${processedHtml}
       </html>
     `;
   }, [files]);
