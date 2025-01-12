@@ -1,0 +1,7 @@
+.window-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+  }
+  

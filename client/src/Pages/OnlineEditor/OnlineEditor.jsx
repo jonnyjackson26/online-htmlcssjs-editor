@@ -7,9 +7,8 @@ const OnlineEditor = () => {
 
   return (
     <div>
-      <p>Online Editor</p>
       <Editor addBoilerPlate={true}/>
-      <Link to="/">go to home</Link>
+      {/*<Link to="/">go to home</Link>*/}
     </div>
   );
 };

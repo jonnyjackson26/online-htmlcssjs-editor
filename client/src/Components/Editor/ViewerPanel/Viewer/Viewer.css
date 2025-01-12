@@ -1,0 +1,12 @@
+.viewer {
+    border: 1px solid #ddd;
+    overflow: hidden;
+  }
+
+.viewer iframe {
+  border:0;
+  outline: none; /* Removes any focus outline */
+  box-shadow: none; /* Removes any shadow effect */
+  width:100%;
+  height:100%;
+}

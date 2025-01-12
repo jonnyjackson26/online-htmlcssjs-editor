@@ -1,0 +1,25 @@
+.tab-row {
+    display: flex;
+    background-color: #ddd;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tab {
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    background-color: #bbb;
+  }
+  
+  .add-tab {
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: green;
+  }
+  

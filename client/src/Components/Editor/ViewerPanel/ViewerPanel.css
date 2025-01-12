@@ -1,0 +1,6 @@
+.viewer-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+  }
+  

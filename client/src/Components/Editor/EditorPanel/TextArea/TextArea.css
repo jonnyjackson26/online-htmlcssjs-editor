@@ -1,0 +1,6 @@
+.text-area {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+  }

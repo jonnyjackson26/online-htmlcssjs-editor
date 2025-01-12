@@ -1,16 +1,27 @@
-.editor {
+.editor-container {
     display: flex;
-    flex-direction: column;
     height: 100vh;
-    border: 1px solid #ccc;
-}
-
-.code-editor {
-    flex: 1;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    outline: none;
-    resize: none;
-}
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .editor-panel {
+    flex-grow: 0;
+    flex-basis: var(--editor-size, 50%);
+    overflow: auto;
+    border-right: 1px solid #ddd;
+  }
+  
+  .viewer-panel {
+    flex-grow: 0;
+    flex-basis: var(--viewer-size, 50%);
+    overflow: auto;
+  }
+  
+  .resize-handle {
+    width: 5px;
+    cursor: col-resize;
+    background-color: #ccc;
+    flex-shrink: 0;
+  }
+  
