@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TabRow.css';
+import Tab from './Tab/Tab';
 
 const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
   const [isAddingTab, setIsAddingTab] = useState(false);
@@ -25,13 +26,12 @@ const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
   return (
     <div className="tab-row">
       {tabs.map((tab) => (
-        <button
+        <Tab
           key={tab}
-          className={`tab ${tab === activeTab ? 'active' : ''}`}
-          onClick={() => onSwitchTab(tab)}
-        >
-          {tab}
-        </button>
+          tab={tab}
+          activeTab={activeTab}
+          onSwitchTab={onSwitchTab}
+        />
       ))}
       {isAddingTab ? (
         <input
