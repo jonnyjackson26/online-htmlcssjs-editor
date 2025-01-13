@@ -14,9 +14,13 @@
 
 /* Syntax highlighting styles */
 .editable .tag {
-  color: #d73a49; /* Red for tags */
+  color: red; /* Red for tags */
 }
 
 .editable .string {
-  color: #032f62; /* Blue for strings */
+  color: orange; /* Blue for strings */
+}
+
+.editable .comment {
+  color: blue; /* blue for comment */
 }
