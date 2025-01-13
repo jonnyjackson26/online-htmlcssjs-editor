@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './TabRow.css';
 import Tab from './Tab/Tab';
 
 const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
   const [isAddingTab, setIsAddingTab] = useState(false);
   const [newTabName, setNewTabName] = useState('');
+  const inputRef = useRef(null);
+
+  // Close the input if clicked outside when it's empty
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (inputRef.current && !inputRef.current.contains(e.target) && !newTabName.trim()) {
+        setIsAddingTab(false); // Close input if clicked outside and it's empty
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [newTabName]);
 
   const handleAddTab = () => {
     if (newTabName.trim()) {
@@ -35,6 +50,7 @@ const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
       ))}
       {isAddingTab ? (
         <input
+          ref={inputRef}
           type="text"
           value={newTabName}
           onChange={(e) => setNewTabName(e.target.value)}
