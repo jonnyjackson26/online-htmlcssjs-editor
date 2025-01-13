@@ -3,7 +3,7 @@ import './EditorPanel.css';
 import TabRow from './TabRow/TabRow';
 import TextArea from './TextArea/TextArea';
 
-const EditorPanel = ({ size, onCodeChange, files, onAddFile, onDeleteFile, activeTab, setActiveTab }) => {
+const EditorPanel = ({ size, onCodeChange, files, onAddFile, onDeleteFile, onRenameFile, activeTab, setActiveTab }) => {
   const handleTextChange = (filename, value) => {
     onCodeChange(filename, value);
   };
@@ -16,8 +16,9 @@ const EditorPanel = ({ size, onCodeChange, files, onAddFile, onDeleteFile, activ
         tabs={files.map(file => file.filename)}
         activeTab={activeTab}
         onAddTab={onAddFile}
-        onSwitchTab={setActiveTab} // Pass setActiveTab here
-        onDeleteTab={onDeleteFile} // Pass delete handler
+        onSwitchTab={setActiveTab}
+        onDeleteTab={onDeleteFile}
+        onRenameTab={onRenameFile}
       />
       <TextArea
         activeTab={activeTab}

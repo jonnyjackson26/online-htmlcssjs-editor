@@ -59,6 +59,18 @@ const Editor = ({ useBoilerPlate }) => {
     }
   };
 
+  const handleRenameFile = (oldFilename, newFilename) => {
+    if (!files.some(file => file.filename === newFilename)) {
+      const updatedFiles = files.map(file =>
+        file.filename === oldFilename ? { ...file, filename: newFilename } : file
+      );
+      setFiles(updatedFiles);
+      if (activeTab === oldFilename) {
+        setActiveTab(newFilename);
+      }
+    }
+  };
+
   return (
     <div className="editor-container">
       <EditorPanel
@@ -67,6 +79,7 @@ const Editor = ({ useBoilerPlate }) => {
         files={files}
         onAddFile={handleAddFile}
         onDeleteFile={handleDeleteFile} // Pass delete handler
+        onRenameFile={handleRenameFile}
         activeTab={activeTab}
         setActiveTab={setActiveTab} // Pass setActiveTab
       />

@@ -14,3 +14,5 @@ keyboard shortcuts
 make the tab bar scrollable
 
 line numbers in textarea
+
+what about when adding a file thats name already exists?
