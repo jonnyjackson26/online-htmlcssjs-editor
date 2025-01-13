@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './TabRow.css';
 import Tab from './Tab/Tab';
 
-const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
+const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab, onDeleteTab }) => {
   const [isAddingTab, setIsAddingTab] = useState(false);
   const [newTabName, setNewTabName] = useState('');
   const inputRef = useRef(null);
@@ -46,6 +46,7 @@ const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab }) => {
           tab={tab}
           activeTab={activeTab}
           onSwitchTab={onSwitchTab}
+          onDeleteTab={onDeleteTab} // Pass the delete handler
         />
       ))}
       {isAddingTab ? (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Tab.css';
 import TabContextMenu from './TabContextMenu/TabContextMenu';
 
-const Tab = ({ tab, activeTab, onSwitchTab, onDeleteTab, onRenameTab }) => {
+const Tab = ({ tab, activeTab, onSwitchTab, onDeleteTab }) => {
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
 
@@ -31,7 +31,7 @@ const Tab = ({ tab, activeTab, onSwitchTab, onDeleteTab, onRenameTab }) => {
         isVisible={contextMenuVisible}
         position={contextMenuPosition}
         onDeleteTab={onDeleteTab}
-        onRenameTab={onRenameTab}
+        onRenameTab={() => console.log("Rename functionality")} // Placeholder for now
         onClose={handleCloseContextMenu}
       />
     </>

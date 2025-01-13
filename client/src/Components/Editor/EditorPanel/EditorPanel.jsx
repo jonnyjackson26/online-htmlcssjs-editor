@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './EditorPanel.css';
 import TabRow from './TabRow/TabRow';
 import TextArea from './TextArea/TextArea';
 
-const EditorPanel = ({ size, onCodeChange, files, onAddFile }) => {
-  const [activeTab, setActiveTab] = useState('index.html');
-
-  // Handle the addition of a new file and set it as the active tab
-  const handleAddFile = (filename) => {
-    onAddFile(filename); // Add the new file
-    setActiveTab(filename); // Make the newly added file the active tab
-  };
-
+const EditorPanel = ({ size, onCodeChange, files, onAddFile, onDeleteFile, activeTab, setActiveTab }) => {
   const handleTextChange = (filename, value) => {
     onCodeChange(filename, value);
   };
@@ -23,8 +15,9 @@ const EditorPanel = ({ size, onCodeChange, files, onAddFile }) => {
       <TabRow
         tabs={files.map(file => file.filename)}
         activeTab={activeTab}
-        onAddTab={handleAddFile} // Pass the modified handleAddFile to TabRow
-        onSwitchTab={setActiveTab}
+        onAddTab={onAddFile}
+        onSwitchTab={setActiveTab} // Pass setActiveTab here
+        onDeleteTab={onDeleteFile} // Pass delete handler
       />
       <TextArea
         activeTab={activeTab}
