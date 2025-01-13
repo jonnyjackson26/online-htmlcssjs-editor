@@ -22,11 +22,18 @@ const TabRow = ({ tabs, activeTab, onAddTab, onSwitchTab, onDeleteTab, onRenameT
   }, [newTabName]);
 
   const handleAddTab = () => {
-    if (newTabName.trim()) {
-      onAddTab(newTabName.trim());
-      setNewTabName('');
+    if (!newTabName.trim()) return;
+
+    if (tabs.includes(newTabName.trim())) {
       setIsAddingTab(false);
+      setNewTabName('');
+      alert('A file with this name already exists. Please choose a different name.');
+      return;
     }
+
+    onAddTab(newTabName.trim());
+    setNewTabName('');
+    setIsAddingTab(false);
   };
 
   const handleKeyPress = (e) => {
