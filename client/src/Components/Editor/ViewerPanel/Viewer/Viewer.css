@@ -1,6 +1,7 @@
 .viewer {
     border: 1px solid #ddd;
     overflow: hidden;
+    height:100%;
   }
 
 .viewer iframe {

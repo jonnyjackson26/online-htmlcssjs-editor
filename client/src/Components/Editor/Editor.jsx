@@ -6,31 +6,34 @@ import boilerplate from '../../assets/boilerplate';
 
 const Editor = ({ useBoilerPlate }) => {
   const [sizes, setSizes] = useState({ editor: 50, viewer: 50 });
+  const [isResizing, setIsResizing] = useState(false);
 
   const handleDrag = (e) => {
     const newEditorSize = (e.clientX / window.innerWidth) * 100;
     setSizes({ editor: newEditorSize, viewer: 100 - newEditorSize });
   };
 
-  const handleDragEnd = () => {
-    document.removeEventListener('mousemove', handleDrag);
-    document.removeEventListener('mouseup', handleDragEnd);
-  };
-
   const handleDragStart = () => {
-    document.addEventListener('mousemove', handleDrag);
-    document.addEventListener('mouseup', handleDragEnd);
-  };
+  setIsResizing(true);
+  document.addEventListener('mousemove', handleDrag);
+  document.addEventListener('mouseup', handleDragEnd);
+};
+
+const handleDragEnd = () => {
+  setIsResizing(false);
+  document.removeEventListener('mousemove', handleDrag);
+  document.removeEventListener('mouseup', handleDragEnd);
+};
 
   const initialFiles = useBoilerPlate
     ? [
         { filename: "index.html", text: boilerplate.html },
-        { filename: "style.css", text: boilerplate.css },
+        { filename: "styles.css", text: boilerplate.css },
         { filename: "script.js", text: boilerplate.js }
       ]
     : [
         { filename: "index.html", text: "" },
-        { filename: "style.css", text: "" },
+        { filename: "styles.css", text: "" },
         { filename: "script.js", text: "" }
       ];
 
@@ -73,15 +76,16 @@ const Editor = ({ useBoilerPlate }) => {
 
   return (
     <div className="editor-container">
+      {isResizing && <div className="resize-overlay" />}
       <EditorPanel
         size={sizes.editor}
         onCodeChange={handleFileChange}
         files={files}
         onAddFile={handleAddFile}
-        onDeleteFile={handleDeleteFile} // Pass delete handler
+        onDeleteFile={handleDeleteFile}
         onRenameFile={handleRenameFile}
         activeTab={activeTab}
-        setActiveTab={setActiveTab} // Pass setActiveTab
+        setActiveTab={setActiveTab}
       />
       <div
         className="resize-handle"

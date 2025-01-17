@@ -18,10 +18,21 @@
     overflow: auto;
   }
   
-  .resize-handle {
-    width: 5px;
-    cursor: col-resize;
-    background-color: #ccc;
-    flex-shrink: 0;
-  }
+.resize-handle {
+  width: 10px; /* Adjust as needed */
+  cursor: ew-resize;
+  background: #ddd;
+  z-index: 10; /* Ensure it's above the iframe */
+}
+
+.resize-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 10;
+}
+
   
