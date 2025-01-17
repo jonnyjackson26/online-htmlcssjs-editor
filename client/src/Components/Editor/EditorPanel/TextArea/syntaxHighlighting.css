@@ -1,0 +1,37 @@
+
+/* Syntax highlighting styles */
+.editable .tag {
+    color: red; /* Red for tags */
+  }
+  
+  .editable .string {
+    color: orange; /* Blue for strings */
+  }
+  
+  .editable .comment {
+    color: blue; /* blue for comment */
+  }
+
+
+/* css */
+.css-comment {
+    color: green;
+    font-style: italic;
+}
+.css-selector {
+    color: blue;
+    font-weight: bold;
+}
+.css-property {
+    color: purple;
+}
+.css-value {
+    color: darkorange;
+}
+.css-pseudo {
+    color: darkred;
+}
+.css-atrule {
+    color: teal;
+    font-weight: bold;
+}

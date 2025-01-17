@@ -1,57 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import './TextArea.css';
+import './syntaxHighlighting.css';
+import applyHighlighting from './syntaxHighlight'
 
 const TextArea = ({ activeTab, value, onChange }) => {
   const editableRef = useRef(null);
-
   
-
-  const applyHighlighting = (text) => {
-    // Step 1: Escape special characters
-    const escapedText = text
-      .replace(/&/g, '&amp;')  // Escape ampersands
-      .replace(/</g, '&lt;')   // Escape less-than
-      .replace(/>/g, '&gt;');  // Escape greater-than
-  
-    // Step 2: Wrap all tags (including self-closing tags) in <tag>...</tag>
-    const withTags = escapedText.replace(
-      /(&lt;\/?[a-z0-9-]+(?:\s+[^&gt;]*)?\/?&gt;)/gi,  // Matches both self-closing and non self-closing tags
-      '<tag>$1</tag>'
-    );
-  
-    // Step 3: Temporarily wrap strings in <string>...</string>
-    const withStrings = withTags.replace(
-      /("[^"]*"|'[^']*')/g,  // Strings in quotes
-      '<string>$1</string>'
-    );
-  
-    // Step 4: Wrap comments in <comment>...</comment>
-    const withComments = withStrings.replace(
-      /(&lt;!--[\s\S]*?--&gt;)/g,  // Matches HTML comments
-      '<comment>$1</comment>'
-    );
-  
-    // Step 5: Replace <tag>, <string>, and <comment> placeholders with <span> elements
-    const highlightedText = withComments
-      .replace(/<tag>/g, '<span class="tag">')
-      .replace(/<\/tag>/g, '</span>')
-      .replace(/<string>/g, '<span class="string">')
-      .replace(/<\/string>/g, '</span>')
-      .replace(/<comment>/g, '<span class="comment">')
-      .replace(/<\/comment>/g, '</span>');
-  
-    return highlightedText;
-  };
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
   const saveSelection = () => {
     const selection = window.getSelection();
     if (!selection.rangeCount) return null;
@@ -107,7 +61,7 @@ const TextArea = ({ activeTab, value, onChange }) => {
     const savedSelection = saveSelection();
 
     if (editableRef.current) {
-      editableRef.current.innerHTML = applyHighlighting(value || '').replace(/\n/g, '<br>');
+      editableRef.current.innerHTML = applyHighlighting(value || '', activeTab).replace(/\n/g, '<br>');
     }
 
     restoreSelection(savedSelection);

@@ -13,7 +13,8 @@ const Editor = ({ useBoilerPlate }) => {
     setSizes({ editor: newEditorSize, viewer: 100 - newEditorSize });
   };
 
-  const handleDragStart = () => {
+  const handleDragStart = (e) => {
+    e.preventDefault(); //prevents text selection on resize
   setIsResizing(true);
   document.addEventListener('mousemove', handleDrag);
   document.addEventListener('mouseup', handleDragEnd);
