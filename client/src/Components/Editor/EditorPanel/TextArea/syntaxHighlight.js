@@ -6,6 +6,9 @@ const applyHighlighting = (text, activeTab) => {
     else if (activeTab && activeTab.endsWith('.css')){
         return applyCssHighlighting(text);
     }
+    else if (activeTab && activeTab.endsWith('.js')){
+        return applyJSHighlighting(text);
+    }
     else {
         return text;
     }
@@ -49,6 +52,13 @@ const applyHtmlHighlighting = (text) => {
 
     return highlightedText;
 }
+
+
+const applyJSHighlighting = (text, activeTab) => {
+    
+    return text;
+  };
+
 
 
 const applyCssHighlighting = (text) => {

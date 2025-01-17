@@ -35,3 +35,26 @@
     color: teal;
     font-weight: bold;
 }
+
+/* js */
+.js-comment {
+    color: green;
+    font-style: italic;
+}
+.js-string {
+    color: orange;
+}
+.js-keyword {
+    color: blue;
+    font-weight: bold;
+}
+.js-number {
+    color: purple;
+}
+.js-operator {
+    color: darkred;
+}
+.js-brace {
+    color: black;
+    font-weight: bold;
+}
