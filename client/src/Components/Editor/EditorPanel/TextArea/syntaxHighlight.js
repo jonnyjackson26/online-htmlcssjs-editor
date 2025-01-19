@@ -1,5 +1,4 @@
 const applyHighlighting = (text, activeTab) => {
-    console.log(activeTab);
     if(activeTab && activeTab.endsWith('.html')){
     return applyHtmlHighlighting(text);   
     } 
@@ -54,7 +53,7 @@ const applyHtmlHighlighting = (text) => {
 }
 
 
-const applyJSHighlighting = (text, activeTab) => {
+const applyJSHighlighting = (text) => {
     
     return text;
   };

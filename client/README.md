@@ -16,3 +16,5 @@ make the tab bar scrollable
 line numbers in textarea
 
 search in code
+
+save button, and hot reload checkbox
