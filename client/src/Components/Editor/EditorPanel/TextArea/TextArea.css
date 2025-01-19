@@ -1,5 +1,15 @@
-.editor-container {
+.editor-scroll-container {
+  flex-grow: 1;
+  overflow: auto;
   position: relative;
+}
+
+.editor-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 textarea, pre {
@@ -14,9 +24,8 @@ textarea, pre {
   font-family: monospace;
   font-size: 14px;
   line-height: 1.5;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow: auto;
+  white-space: pre;
+  word-wrap: normal;
 }
 
 textarea {
@@ -24,17 +33,15 @@ textarea {
   background: transparent;
   caret-color: black;
   resize: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 pre {
   pointer-events: none;
   background: white;
-  z-index: 0;
-  color: black; /* Ensure default text color is visible */
+  z-index: 1;
 }
 
-/* Add this to ensure syntax highlighting is visible */
 pre code {
   font-family: inherit;
 }

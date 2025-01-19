@@ -7,9 +7,11 @@ const TextArea = ({ activeTab, value, onChange }) => {
   const [text, setText] = useState(value || '');
   const textareaRef = useRef(null);
   const preRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     syncScroll();
+    adjustContainerSize();
   }, [text]);
 
   useEffect(() => {
@@ -29,6 +31,14 @@ const TextArea = ({ activeTab, value, onChange }) => {
     }
   };
 
+  const adjustContainerSize = () => {
+    if (containerRef.current && textareaRef.current) {
+      containerRef.current.style.width = `${textareaRef.current.scrollWidth}px`;
+      containerRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
+  
+
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
       e.preventDefault();
@@ -36,33 +46,30 @@ const TextArea = ({ activeTab, value, onChange }) => {
       const end = e.target.selectionEnd;
       const newText = text.substring(0, start) + '    ' + text.substring(end);
       setText(newText);
-      // Set timeout to ensure the text is updated before setting the selection
       setTimeout(() => {
         e.target.setSelectionRange(start + 4, start + 4);
       }, 0);
-      // Trigger onChange to update parent component
       onChange(activeTab, newText);
     }
   };
-  
 
   return (
-    <div className="editor-container">
-      <textarea
-        ref={textareaRef}
-        value={text}
-        onChange={handleInput}
-        onScroll={syncScroll}
-        onKeyDown={handleKeyDown}
-        spellCheck="false"
-      />
-      <pre ref={preRef} className="editable">
-        <code dangerouslySetInnerHTML={{ __html: applyHighlighting(text, activeTab) }} />
-      </pre>
+    <div className="editor-scroll-container">
+      <div className="editor-content" ref={containerRef}>
+        <textarea
+          ref={textareaRef}
+          value={text}
+          onChange={handleInput}
+          onScroll={syncScroll}
+          onKeyDown={handleKeyDown}
+          spellCheck="false"
+        />
+        <pre ref={preRef} className="editable">
+          <code dangerouslySetInnerHTML={{ __html: applyHighlighting(text, activeTab) }} />
+        </pre>
+      </div>
     </div>
   );
-  
-  
 };
 
 export default TextArea;
