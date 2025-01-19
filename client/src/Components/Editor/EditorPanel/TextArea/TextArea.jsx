@@ -33,7 +33,6 @@ const TextArea = ({ activeTab, value, onChange }) => {
 
   const adjustContainerSize = () => {
     if (containerRef.current && textareaRef.current) {
-      containerRef.current.style.width = `${textareaRef.current.scrollWidth}px`;
       containerRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };

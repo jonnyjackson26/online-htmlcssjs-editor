@@ -1,16 +1,14 @@
 .editor-scroll-container {
   flex-grow: 1;
-  overflow: auto;
+  overflow: hidden; /* Prevent scrollbars for the container */
   position: relative;
 }
 
 .editor-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
+  width: 100%; /* Ensure content doesn't overflow its parent */
   min-height: 100%;
 }
+
 
 textarea, pre {
   position: absolute;
@@ -24,7 +22,8 @@ textarea, pre {
   font-family: monospace;
   font-size: 14px;
   line-height: 1.5;
-  white-space: pre;
+  overflow-x: auto;
+  white-space: pre; /* Prevent wrapping */
   word-wrap: normal;
 }
 
