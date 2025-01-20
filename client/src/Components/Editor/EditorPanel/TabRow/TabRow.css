@@ -3,6 +3,13 @@
   align-items: center;
   background-color: #f0f0f0;
   padding: 5px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical overflow */
+  scrollbar-width: none; /* For Firefox, hide scrollbar */
+}
+
+.tab-row::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit-based browsers */
 }
 
 .add-tab {
@@ -12,6 +19,7 @@
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 input[type="text"] {
@@ -20,6 +28,7 @@ input[type="text"] {
   border-radius: 4px;
   font-size: 14px;
   outline: none;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 input[type="text"]:focus {
