@@ -1,14 +1,32 @@
 .editor-scroll-container {
   flex-grow: 1;
-  overflow: hidden; /* Prevent scrollbars for the container */
   position: relative;
+  overflow: hidden;
 }
 
-.editor-content {
-  width: 100%; /* Ensure content doesn't overflow its parent */
-  min-height: 100%;
+.line-numbers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  padding: 10px 5px;
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+  text-align: right;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #999;
+  user-select: none;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
 }
 
+.line-numbers span {
+  display: block;
+}
 
 textarea, pre {
   position: absolute;
@@ -17,14 +35,14 @@ textarea, pre {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 10px;
+  padding: 10px 10px 10px 50px;
   border: none;
   font-family: monospace;
   font-size: 14px;
   line-height: 1.5;
-  overflow-x: auto;
-  white-space: pre; /* Prevent wrapping */
+  white-space: pre;
   word-wrap: normal;
+  box-sizing: border-box;
 }
 
 textarea {
@@ -32,13 +50,15 @@ textarea {
   background: transparent;
   caret-color: black;
   resize: none;
-  z-index: 2;
+  z-index: 1;
+  overflow: auto; /* Ensure scrolling */
 }
 
 pre {
   pointer-events: none;
   background: white;
-  z-index: 1;
+  z-index: 0;
+  overflow: auto; /* Ensure scrolling */
 }
 
 pre code {
